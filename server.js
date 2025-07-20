@@ -84,3 +84,7 @@ app.delete("/movies/:id", (req, res) => {
   const deletedMovie = movies.splice(movieIndex, 1);
   res.json(deletedMovie[0]);
 });
+
+//* The code above defines a complete set of RESTful routes for managing a movies resourse using Express.
+
+//* It begins wt an in-memory array, movies, which acts as our temporary data store. The GET /movies route returns all books, while GET /movies/:id retrieves a specific movie by its ID using Array.find(), returning a 404 status if it's not found. The POST /movies route accepts JSON inputs, creates a new book wt an auto-incremented ID, and adds it to d array, returning d new resource wt a 201 Created status allows us to add a new movie, PUT /movies/:id updates an existing movie, and DELETE /movies/:id removes a movie from the collection.
