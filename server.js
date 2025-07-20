@@ -113,3 +113,18 @@ const validateMovie = (req, res, next) => {
     return res.status(400).send("Title, genre, and year are required.");
   }
 };
+//* This middleware function, validateMovie, performs a simple validation check on incoming requests b4 they reach d route handler (to the /movies endpoint). It checks if the request body contains the required fields: title, genre, and year(if dtitle, genre, n year fields are present in d request body). If any of these fields are missing, it responds immediately with a 400 Bad Request status and an error message. If all required fields are present, it calls next() to pass control to the next middleware or route handler. This keeps validation logic separate n reusable from the route handlers, making the code cleaner and easier to maintain.
+
+//* To use this middleware, pass it as an arg in ur POST and PUT routes like this:
+app.post("/movies", validateMovie, (req, res) => {
+  const movie = {
+    id: movies.length + 1, // Simple ID generation
+    title: req.body.title,
+    genre: req.body.genre,
+    year: req.body.year,
+  };
+  movies.push(movie);
+  res.status(201).json(movie);
+});
+
+//* Test the API: Now that we have our RESTful API set up, we can test it using tools like Postman or cURL. These tools allow us to send HTTP requests to our server and see how it responds. We can test each route by sending GET, POST, PUT, and DELETE requests to the appropriate endpoints (e.g., http://localhost:8000/movies for GET, http://localhost:8000/movies/:id for GET by ID, etc.).
